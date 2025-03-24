@@ -5,6 +5,8 @@ import { ToastController, LoadingController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { DataService } from '../services/data.service';
+import { Browser } from '@capacitor/browser';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -41,6 +43,9 @@ export class LoginPage implements OnInit {
     toast.present();
   }
 
+   openCapacitorSite = async () => {
+    await Browser.open({ url: environment.FORGOT_PASSWORD_LINK });
+  };
   async login(){
     let loading = await this.loadingController.create({
       message:"Logging In...",

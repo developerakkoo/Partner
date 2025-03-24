@@ -6,7 +6,7 @@
     <ion-button fill="clear" slot="end" (click)="openPage('notifications')">
       <ion-icon slot="icon-only" name="notifications-outline"></ion-icon>
     </ion-button>
-    <ion-button fill="clear" slot="end" (click)="openPage('hotel')">
+    <ion-button fill="clear" slot="end" (click)="openPage('hotel/view')">
       <ion-icon slot="icon-only" name="business-outline"></ion-icon>
     </ion-button>
   </ion-toolbar>
@@ -49,7 +49,7 @@
           <div class="card-container">
             <img src="assets/ofs.png" alt="">
             <p class="count"> {{dishOutOfStock || 0}} </p>
-            <p class="sub-header">Out of Stock Products</p>
+            <p class="sub-header">Out of Stock</p>
           </div>
         </ion-card>
       </ion-col>
@@ -65,13 +65,13 @@
     </ion-item>
   </ion-card>
  
-  <ion-card fill="outline" routerLink="/rejected-orders">
+  <!-- <ion-card fill="outline" routerLink="/rejected-orders">
     <ion-item detail>
     <ion-icon name="ban-outline" slot="start"></ion-icon>
 
       <ion-label>Rejected Orders</ion-label>
     </ion-item>
-  </ion-card>
+  </ion-card> -->
 
  
 </ion-content>
