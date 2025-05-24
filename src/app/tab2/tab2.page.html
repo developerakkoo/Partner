@@ -1,34 +1,69 @@
 <ion-header [translucent]="true" class="ion-no-border">
   <ion-toolbar>
-    <ion-title class="ion-text-center">
-      Earnings
-    </ion-title>
+    <ion-title class="ion-text-center"> Earnings </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
- <ion-grid fixed>
-  <ion-row>
-    <ion-col size="6">
-      <ion-input (ionChange)="setStartDate($event)" [(ngModel)]="startDate" fill="outline" label="Start date" labelPlacement="stacked" type="date" placeholder="Awesome Input"></ion-input>
-    </ion-col>
-    <ion-col size="6">
-      <ion-input (ionChange)="setEndDate($event)" [(ngModel)]="endDate" fill="outline" label="End date" labelPlacement="stacked" type="date" placeholder="Awesome Input"></ion-input>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="6">
+        <ion-input
+          (ionChange)="setStartDate($event)"
+          [(ngModel)]="startDate"
+          fill="outline"
+          label="Start date"
+          labelPlacement="stacked"
+          type="date"
+          placeholder="Awesome Input"
+        ></ion-input>
+      </ion-col>
+      <ion-col size="6">
+        <ion-input
+          (ionChange)="setEndDate($event)"
+          [(ngModel)]="endDate"
+          fill="outline"
+          label="End date"
+          labelPlacement="stacked"
+          type="date"
+          placeholder="Awesome Input"
+        ></ion-input>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-    </ion-col>
-  </ion-row>
- </ion-grid>
-
- <ion-text color="primary" *ngIf="earnings.length == 0" class="ion-text-center">
-  <h1>Not data!</h1>
- </ion-text>
- <ion-list *ngIf="earnings.length > 0">
-  <ion-list-header>
-    <ion-label>All Earnings</ion-label>
-  </ion-list-header>
-  <ion-item lines="none" *ngFor="let ear of earnings">
-    <ion-label>{{ear.date | date:"fullDate"}}</ion-label>
-    <ion-badge class="ion-padding" color="primary" mode="ios"> {{ear.earnings | currency:"INR"}} </ion-badge>
-  </ion-item>
- </ion-list>
+  <ion-text
+    color="primary"
+    *ngIf="earnings.length == 0"
+    class="ion-text-center"
+  >
+    <h1>Not data!</h1>
+  </ion-text>
+  <ion-list *ngIf="earnings.length > 0">
+    <ion-list-header>
+      <ion-label>All Earnings</ion-label>
+    </ion-list-header>
+    <ion-item lines="none" *ngFor="let ear of earnings">
+      <ion-label>{{ear.date | date:"fullDate"}}</ion-label>
+      <ion-badge class="ion-padding" color="primary" mode="ios">
+        {{ear.earnings | currency:"INR"}}
+      </ion-badge>
+    </ion-item>
+  </ion-list>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title class="ion-text-center"
+      >Total Earnings:- {{totalEarnings | currency:"INR"}}
+    </ion-title>
+    <ion-button
+      (click)="viewSettlements()"
+      expand="block"
+      fill="solid"
+      class="ion-margin-top"
+    >
+      View Settlements
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,97 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>All Settlements</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab2"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-text
+    color="primary"
+    class="ion-text-center"
+    *ngIf="compensationTable.length === 0"
+  >
+    <h1>All Settlements cleared.</h1>
+  </ion-text>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Settled Amount</ion-card-subtitle>
+            <ion-card-title>{{totalSettled |currency:"INR" }}</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Unsettled Amount</ion-card-subtitle>
+            <ion-card-title>{{totalUnsettled |currency:"INR" }}</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-list *ngIf="compensationTable.length > 0">
+    <ion-list-header>
+      <ion-label *ngIf="paidStatus">All Settled Earnings</ion-label>
+      <ion-label *ngIf="!paidStatus">All Unsettled Earnings</ion-label>
+      <ion-toggle (ionChange)="toggleSettlements($event)" [checked]="paidStatus"
+        >View Unsettled</ion-toggle
+      >
+    </ion-list-header>
+
+    <ion-card class="settlement-card" *ngFor="let item of compensationTable">
+      <ion-card-header>
+        <ion-card-title>
+          Order: {{ item.orderId?.orderId || '-' }}
+        </ion-card-title>
+        <ion-card-subtitle>
+          Hotel: {{ item.hotelId?.hotelName || '-' }}
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-item lines="none">
+          <ion-label>
+            <h3>Dish</h3>
+            <p>{{ item.dishId?.name }} ({{ item.dishId?.dishType }})</p>
+          </ion-label>
+          <ion-note slot="end">
+            ₹{{ item.partnerPrice }} × {{ item.quantity }}
+          </ion-note>
+        </ion-item>
+
+        <ion-item lines="full">
+          <ion-label>
+            <h3>Settled At</h3>
+            <p>{{ item.settledAt | date: 'medium' }}</p>
+          </ion-label>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-label>
+            <h3>Total Partner Earning</h3>
+            <p class="amount">₹{{ item.totalPartnerEarning }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-button
+      expand="full"
+      color="primary"
+      (click)="downloadInvoice()"
+      *ngIf="compensationTable.length > 0"
+    >
+      Download Invoice PDF
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

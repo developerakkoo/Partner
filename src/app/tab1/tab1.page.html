@@ -1,8 +1,6 @@
 <ion-header [translucent]="true" class="ion-no-border">
   <ion-toolbar>
-    <ion-title>
-     Hello {{restaurantName}}
-    </ion-title>
+    <ion-title> Hello {{restaurantName}} </ion-title>
     <ion-button fill="clear" slot="end" (click)="openPage('notifications')">
       <ion-icon slot="icon-only" name="notifications-outline"></ion-icon>
     </ion-button>
@@ -18,8 +16,8 @@
       <ion-col size="6">
         <ion-card>
           <div class="card-container">
-            <img src="assets/today.png" alt="">
-            <p class="count"> {{todaysOrders || 0}} </p>
+            <img src="assets/today.png" alt="" />
+            <p class="count">{{todaysOrders || 0}}</p>
             <p class="sub-header">Today's Orders</p>
           </div>
         </ion-card>
@@ -27,8 +25,8 @@
       <ion-col size="6">
         <ion-card>
           <div class="card-container">
-            <img src="assets/monthly.png" alt="">
-            <p class="count"> {{monthlyOrders || 0}} </p>
+            <img src="assets/monthly.png" alt="" />
+            <p class="count">{{monthlyOrders || 0}}</p>
             <p class="sub-header">Monthly Orders</p>
           </div>
         </ion-card>
@@ -38,8 +36,8 @@
       <ion-col size="6">
         <ion-card>
           <div class="card-container">
-            <img src="assets/stock.png" alt="">
-            <p class="count"> {{dishInStock || 0}} </p>
+            <img src="assets/stock.png" alt="" />
+            <p class="count">{{dishInStock || 0}}</p>
             <p class="sub-header">Stock Products</p>
           </div>
         </ion-card>
@@ -47,24 +45,24 @@
       <ion-col size="6">
         <ion-card>
           <div class="card-container">
-            <img src="assets/ofs.png" alt="">
-            <p class="count"> {{dishOutOfStock || 0}} </p>
+            <img src="assets/ofs.png" alt="" />
+            <p class="count">{{dishOutOfStock || 0}}</p>
             <p class="sub-header">Out of Stock</p>
           </div>
         </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
-  <br>
-  
-  <ion-card fill="outline" routerLink="/products">
+  <br />
+
+  <!-- <ion-card fill="outline" routerLink="/products">
     <ion-item detail>
     <ion-icon name="add" slot="start"></ion-icon>
 
       <ion-label>Add Products</ion-label>
     </ion-item>
-  </ion-card>
- 
+  </ion-card> -->
+
   <!-- <ion-card fill="outline" routerLink="/rejected-orders">
     <ion-item detail>
     <ion-icon name="ban-outline" slot="start"></ion-icon>
@@ -72,6 +70,4 @@
       <ion-label>Rejected Orders</ion-label>
     </ion-item>
   </ion-card> -->
-
- 
 </ion-content>

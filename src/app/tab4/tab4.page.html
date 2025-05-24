@@ -5,48 +5,88 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <ion-select (ionChange)="loadHotelEvent($event)" fill="outline" label="Select Hotel" labelPlacement="stacked" multiple="false" placeholder="Select Hotel">
-    <ion-select-option *ngFor="let hotel of hotels" [value]="hotel._id">{{hotel.hotelName}}</ion-select-option>
+  <ion-select
+    [(ngModel)]="selectedHotel"
+    (ionChange)="loadHotelEvent($event)"
+    fill="outline"
+    label="Select Hotel"
+    labelPlacement="stacked"
+    multiple="false"
+    placeholder="Select Hotel"
+  >
+    <ion-select-option *ngFor="let hotel of hotels" [value]="hotel._id"
+      >{{hotel.hotelName}}</ion-select-option
+    >
   </ion-select>
-  <br>
- <ion-segment value="0" (ionChange)="segmentChanged($event)" mode="ios">
-  <ion-segment-button value="0">
-    <ion-label>Received</ion-label>
-  </ion-segment-button>
-  <ion-segment-button value="4">
-    <ion-label>Preparing</ion-label>
-  </ion-segment-button>
-  <ion-segment-button value="5">
-    <ion-label>Rejected Order</ion-label>
-  </ion-segment-button>
- </ion-segment>
+  <br />
+  <ion-segment value="0" (ionChange)="segmentChanged($event)" mode="ios">
+    <ion-segment-button value="0">
+      <ion-label>Received</ion-label>
+    </ion-segment-button>
 
- <ion-text color="primary" class="ion-text-center" *ngIf="orders.length == 0">
-  <h1>No Orders!</h1>
- </ion-text>
+    <ion-segment-button value="3">
+      <ion-label>Completed</ion-label>
+    </ion-segment-button>
+  </ion-segment>
 
- <ion-list *ngIf="orders.length > 0">
-  <ion-list-header>
-    <ion-label>All Orders here</ion-label>
-  </ion-list-header>
+  <ion-text color="primary" class="ion-text-center" *ngIf="orders.length == 0">
+    <h1>No Orders!</h1>
+  </ion-text>
 
-  <ion-card *ngFor="let item of orders" (click)="presentActionSheet(item._id)">
-    <ion-card-header>
-      <ion-card-subtitle>Order By:- {{item.user.name}}</ion-card-subtitle>
-      <ion-card-title> Order ID: {{item.orderId}}</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-item *ngFor="let p of item.productDetails">
-        <ion-avatar slot="start">
-          <img crossorigin="anonymous" [src]="p.image_url" />
-        </ion-avatar>
-        <ion-label>{{p.name}}
+  <ion-list *ngIf="orders.length > 0">
+    <ion-list-header>
+      <ion-label>All Orders here</ion-label>
+    </ion-list-header>
+    <ng-container *ngFor="let order of orders">
+      <ion-card *ngIf="order">
+        <ion-card-header>
+          <ion-card-title>Order ID: {{ order.orderId }}</ion-card-title>
+          <ion-card-subtitle
+            >{{ order.products.length }} item(s)</ion-card-subtitle
+          >
+        </ion-card-header>
 
-          <p> {{p.partnerPrice | currency:"INR"}} </p>
-        </ion-label>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
+        <!-- List of Products -->
+        <ion-list>
+          <ion-item *ngFor="let product of order.products">
+            <ion-avatar slot="start">
+              <img
+                [src]="product.dishInfo?.image_url || 'assets/placeholder.png'"
+              />
+            </ion-avatar>
+            <ion-label>
+              <h2>{{ product.dishInfo?.name }}</h2>
+              <p>Partner Price: ₹{{ product.dishInfo?.partnerPrice }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
 
-</ion-list>
+        <!-- Action Buttons -->
+        <ion-footer class="ion-padding" *ngIf="order.orderStatus != 3">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6">
+                <ion-button
+                  expand="block"
+                  color="success"
+                  (click)="acceptOrder(order._id)"
+                >
+                  Accept
+                </ion-button>
+              </ion-col>
+              <ion-col size="6">
+                <ion-button
+                  expand="block"
+                  color="danger"
+                  (click)="rejectOrder(order._id)"
+                >
+                  Reject
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-footer>
+      </ion-card>
+    </ng-container>
+  </ion-list>
 </ion-content>

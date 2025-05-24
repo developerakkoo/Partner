@@ -9,31 +9,49 @@ const routes: Routes = [
   },
   {
     path: 'notifications',
-    loadChildren: () => import('./notifications/notifications.module').then( m => m.NotificationsPageModule)
+    loadChildren: () =>
+      import('./notifications/notifications.module').then(
+        (m) => m.NotificationsPageModule
+      ),
   },
   {
     path: '',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () =>
+      import('./login/login.module').then((m) => m.LoginPageModule),
   },
   {
     path: 'register',
-    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
+    loadChildren: () =>
+      import('./register/register.module').then((m) => m.RegisterPageModule),
   },
   {
     path: 'products',
-    loadChildren: () => import('./products/products.module').then( m => m.ProductsPageModule)
+    loadChildren: () =>
+      import('./products/products.module').then((m) => m.ProductsPageModule),
   },
   {
     path: 'rejected-orders',
-    loadChildren: () => import('./rejected-orders/rejected-orders.module').then( m => m.RejectedOrdersPageModule)
+    loadChildren: () =>
+      import('./rejected-orders/rejected-orders.module').then(
+        (m) => m.RejectedOrdersPageModule
+      ),
   },
   {
     path: 'hotel',
-    loadChildren: () => import('./hotel/hotel.module').then( m => m.HotelPageModule)
+    loadChildren: () =>
+      import('./hotel/hotel.module').then((m) => m.HotelPageModule),
   },
   {
     path: 'profile',
-    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
+    loadChildren: () =>
+      import('./profile/profile.module').then((m) => m.ProfilePageModule),
+  },
+  {
+    path: 'settlements/:partnerId/:hotelId',
+    loadChildren: () =>
+      import('./settlements/settlements.module').then(
+        (m) => m.SettlementsPageModule
+      ),
   },
 ];
 @NgModule({
