@@ -304,4 +304,18 @@ export class AuthService {
       }
     );
   }
+  downloadInvoice(partnerId:any, hotelName:any, earnings:any[]) {
+    return this.http.post(
+      environment.URL +
+        `invoice/generate`,
+        {
+          partnerId, hotelName, earnings
+        },
+      {
+        headers: {
+          'x-access-token': this.accessToken.value.toString(),
+        },
+      }
+    );
+  }
 }

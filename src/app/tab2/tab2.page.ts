@@ -4,6 +4,7 @@ import { LoadingController } from '@ionic/angular';
 import { HttpErrorResponse } from '@angular/common/http';
 import * as moment from 'moment';
 import { Router } from '@angular/router';
+import { DataService } from '../services/data.service';
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
@@ -17,7 +18,8 @@ export class Tab2Page {
   constructor(
     private auth: AuthService,
     private loadingController: LoadingController,
-    private router: Router
+    private router: Router,
+    private data: DataService
   ) {
     console.log(this.startDate);
     console.log(this.endDate);
@@ -59,9 +61,9 @@ export class Tab2Page {
     });
   }
 
-  viewSettlements() {
-    let userId = this.auth.getUserId();
-    let hotelId = this.auth.getHotelId();
+  async viewSettlements() {
+    let userId = await  this.data.get("userId");
+    let hotelId = await this.data.get("hotelId");
     console.log(`userId`, userId);
     console.log(`hotel`, hotelId);
 

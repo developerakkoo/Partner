@@ -65,10 +65,12 @@ export class LoginPage implements OnInit {
           let accessToken = value['data']['accessToken'];
           let refreshToken = value['data']['refreshToken'];
           let hotelCount = value['data']['hotelCount'];
+          let hotelId = value['data']['hotelId'];
           await this.data.set("userId", userId);
           await this.data.set("accessToken", accessToken);
           await this.data.set("refreshToken", refreshToken);
           await this.data.set("hotelCount", hotelCount);
+          await this.data.set("hotelId", hotelId);
           if(hotelCount > 0){
             this.router.navigate(['tabs','tabs','tab1']);
 

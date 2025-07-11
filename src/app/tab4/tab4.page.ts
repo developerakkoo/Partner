@@ -128,6 +128,7 @@ export class Tab4Page implements OnInit {
   async getAllHotels() {
     let loading = await this.loadingController.create({
       message: 'loading...',
+      duration:3000
     });
 
     await loading.present();

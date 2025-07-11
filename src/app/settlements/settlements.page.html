@@ -41,7 +41,7 @@
       <ion-label *ngIf="paidStatus">All Settled Earnings</ion-label>
       <ion-label *ngIf="!paidStatus">All Unsettled Earnings</ion-label>
       <ion-toggle (ionChange)="toggleSettlements($event)" [checked]="paidStatus"
-        >View Unsettled</ion-toggle
+        >View Settled</ion-toggle
       >
     </ion-list-header>
 

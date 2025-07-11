@@ -4,8 +4,11 @@
 
 export const environment = {
   production: false,
-  URL:"https://api.dropeat.in/api/v1/",
-  FORGOT_PASSWORD_LINK:"https://api.dropeat.in/api/v1/auth/user-forgot-password"
+  // URL: 'http://localhost:8000/api/v1/',
+
+  URL: 'https://api.dropeat.in/api/v1/',
+  FORGOT_PASSWORD_LINK:
+    'https://api.dropeat.in/api/v1/auth/user-forgot-password',
 };
 
 /*

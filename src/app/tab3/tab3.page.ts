@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { LoadingController } from '@ionic/angular';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab3',
@@ -15,7 +16,8 @@ export class Tab3Page {
   selectedHotel: any;
   constructor(
     private auth: AuthService,
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
+    private router:Router
   ) {}
 
   ionViewDidEnter() {
@@ -25,6 +27,10 @@ export class Tab3Page {
   loadProductsEvent(ev: any) {
     console.log(ev.detail.value);
     this.getAllProducts(ev.detail.value);
+  }
+
+  goToAddProductPage(){
+    this.router.navigate(['products']);
   }
 
   getAllProducts(hotelId: any) {
@@ -99,7 +105,7 @@ export class Tab3Page {
   async getAllHotels() {
     let loading = await this.loadingController.create({
       message: 'loading...',
-      duration: 2000,
+      duration: 3000,
     });
 
     await loading.present();
